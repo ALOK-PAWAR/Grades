@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYCS Grades Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #000000, #ffffff);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #555;
+        }
+        .result {
+            display: none;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .red { background: linear-gradient(to bottom, #ff0000, #ff6666); }
+        .orange { background: linear-gradient(to bottom, #ff6600, #ffcc66); }
+        .yellow { background: linear-gradient(to bottom, #ffff00, #ffff99); }
+        .blue { background: linear-gradient(to bottom, #0000ff, #66ccff); }
+        .green { background: linear-gradient(to bottom, #00ff00, #66ff66); }
+        .purple { background: linear-gradient(to bottom, #800080, #e066ff); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SYCS Grades Calculator Based on Marks</h1>
+        <input type="number" id="marks" placeholder="Enter your percentage">
+        <button onclick="calculateGrade()">Calculate Grade</button>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        function calculateGrade() {
+            var marks = document.getElementById('marks').value;
+            var resultDiv = document.getElementById('result');
+            var grade, message, className;
+
+            if (marks >= 0 && marks <= 35) {
+                grade = "F";
+                message = "Failure is the opportunity to begin again more intelligently. Let's figure out how to improve together!";
+                className = "red";
+            } else if (marks > 35 && marks <= 45) {
+                grade = "D";
+                message = "Don’t be discouraged; every setback is a setup for a comeback. Let’s aim higher next time!";
+                className = "orange";
+            } else if (marks > 45 && marks <= 55) {
+                grade = "C";
+                message = "Good job, but I know you have more potential. Let's work on turning that potential into performance!";
+                className = "yellow";
+            } else if (marks > 55 && marks <= 65) {
+                grade = "B";
+                message = "Great work! Keep pushing, because excellence is just a step beyond.";
+                className = "blue";
+            } else if (marks > 65 && marks <= 75) {
+                grade = "A";
+                message = "Fantastic job! Keep up the hard work and continue striving for greatness.";
+                className = "green";
+            } else if (marks > 75) {
+                grade = "O";
+                message = "Outstanding performance! Your dedication and effort have truly paid off. Keep it up!";
+                className = "purple";
+            } else {
+                grade = "";
+                message = "Please enter a valid percentage.";
+                className = "";
+            }
+
+            resultDiv.className = "result " + className;
+            resultDiv.innerHTML = `<h2>Grade: ${grade}</h2><p>${message}</p>`;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
